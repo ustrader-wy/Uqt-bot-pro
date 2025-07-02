@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YQT BOT PRO</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #060720;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+
+    img {
+      width: 120px;
+      margin: 15px 0;
+      border-radius: 50%;
+      border: 3px solid #444;
+    }
+
+    select, button {
+      width: 280px;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    select {
+      background-color: #222;
+      color: white;
+    }
+
+    button {
+      background-color: #ffbf00;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ffaa00;
+    }
+
+    .spinner {
+      border: 4px solid #ccc;
+      border-top: 4px solid yellow;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: yellow;
+      display: none;
+      text-align: center;
+    }
+
+    .signal {
+      margin-top: 20px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      display: none;
+      color: #00ff00;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>YQT BOT PRO</h1>
+  <h2>100% ACCURATE SIGNAL'S</h2>
+
+  <img src="https://i.imgur.com/HmJAfBI.png" alt="AI Bot" />
+
+  <select id="broker">
+    <option value="quotex">QUOTEX</option>
+    <option value="pocketoption">Pocket Option</option>
+    <option value="olymptrade">Olymp Trade</option>
+  </select>
+
+  <select id="pair">
+    <option value="USDINR">USD/INR (OTC)</option>
+    <option value="EURUSD">EUR/USD</option>
+    <option value="GBPUSD">GBP/USD</option>
+    <option value="USDJPY">USD/JPY</option>
+    <option value="BTCUSD">BTC/USD</option>
+  </select>
+
+  <select id="timeframe">
+    <option value="10">10 sec</option>
+    <option value="30">30 sec</option>
+    <option value="60">60 sec</option>
+    <option value="300">5 min</option>
+    <option value="900">15 min</option>
+  </select>
+
+  <button onclick="getSignal()">Get Signal</button>
+
+  <div class="spinner" id="spinner"></div>
+  <div class="status" id="status">Analyzing the Market...</div>
+  <div class="signal" id="signalOutput"></div>
+
+  <script>
+    function getSignal() {
+      const spinner = document.getElementById("spinner");
+      const status = document.getElementById("status");
+      const signalOutput = document.getElementById("signalOutput");
+
+      // Reset states
+      spinner.style.display = "block";
+      status.style.display = "block";
+      signalOutput.style.display = "none";
+      signalOutput.textContent = "";
+
+      // Simulated analysis delay
+      setTimeout(() => {
+        spinner.style.display = "none";
+        status.style.display = "none";
+
+        // Random signal generator (only BUY or SELL)
+        const signals = ["BUY", "SELL"];
+        const signal = signals[Math.floor(Math.random() * signals.length)];
+
+        // Show the signal
+        signalOutput.textContent = `Signal: ${signal}`;
+        signalOutput.style.color = signal === "BUY" ? "#00ff00" : "#ff4444";
+        signalOutput.style.display = "block";
+
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>
